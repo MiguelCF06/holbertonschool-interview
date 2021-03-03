@@ -26,7 +26,7 @@ void menger(int level)
 {
 	int i, j, sizeSponge;
 
-	if (level > 0)
+	if (level >= 0)
 	{
 		sizeSponge = pow(3, level);
 
