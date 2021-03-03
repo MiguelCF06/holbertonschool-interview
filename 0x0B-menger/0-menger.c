@@ -34,7 +34,7 @@ void menger(int level)
 		{
 			for (j = 0; j < sizeSponge; j++)
 			{
-				putchar(hole_in_cube(i, j, size / 3));
+				putchar(hole_in_cube(i, j, sizeSponge / 3));
 			}
 			printf("\n");
 		}
