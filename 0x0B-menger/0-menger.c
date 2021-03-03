@@ -39,4 +39,6 @@ void menger(int level)
 			printf("\n");
 		}
 	}
+	else
+		exit(0);
 }
