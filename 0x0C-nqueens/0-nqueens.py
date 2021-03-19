@@ -50,7 +50,7 @@ def solveNQUtil(board, col, n):
     """
     Solves the N queen problem using Backtracking
     Arg:
-       - board: list of list of size board[n][n] where n is the number of queens
+       - board: list of list of size board[n][n] where n is the num of queens
        - col: check from column 0 until n and check if it's right to place
 a queen there.
        - n: number of queens to be placed
