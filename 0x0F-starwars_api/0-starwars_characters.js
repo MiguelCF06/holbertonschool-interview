@@ -1,6 +1,6 @@
 #!/usr/bin/node
-const id = process.argv[2];
-const url = 'https://swapi-api.hbtn.io/api/films/' + id;
+const movieId = process.argv[2];
+const url = 'https://swapi-api.hbtn.io/api/films/' + movieId;
 const request = require('request');
 
 function retrive (urlChar) {
