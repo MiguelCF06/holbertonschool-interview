@@ -1,81 +1,49 @@
 #include "search_algos.h"
 
 /**
- *  recursive_bsearch - helper function using recursion
+ * advanced_binary - search the value into the array
  *
- * @array: ptr to array
+ * @array: pointer first element of the array to search in
  * @size: number of elements in array
- * @value: value at index
- * @index: index of mid prior to recursive call
+ * @value: the value to search for
  *
- * Return: first index where value is, otherwise -1 if no value or array NULL
+ * Return:  the index where value is located or -1 on failure
  */
-
-int recursive_bsearch(int *array, size_t size, int value, unsigned int index)
-{
-	unsigned int lo = 0;
-	unsigned int hi = size - 1;
-	unsigned int mid;
-
-	if (size == 0)
-		return (-1);
-
-	printf("Searching in array: ");
-	print_array(array, size);
-
-	if (lo > hi)
-		return (-1);
-	if (size % 2 == 0)
-		mid = (size / 2) - 1;
-	else
-		mid = size / 2;
-	if (array[mid] == value)
-		return (mid + index);
-	else if (array[mid] > value)
-		return (recursive_bsearch(array, mid, value, index));
-	else if (array[mid] < value)
-		return (recursive_bsearch(array + mid + 1, size - mid - 1,
-					  value, index + mid + 1));
-	return (-2);
-}
-
-/**
- *  advanced_binary - searches for value in array ints with Binary search algo
- *
- * @array: ptr to array
- * @size: number of elements in array
- * @value: value at index
- *
- * Return: first index where value is, otherwise -1 if no value or array NULL
- */
-
 int advanced_binary(int *array, size_t size, int value)
 {
-	unsigned int index = 0;
+	size_t i, mitad, index = 0;
+	int tmp;
 
 	if (!array)
 		return (-1);
 
-	return (recursive_bsearch(array, size, value, index));
-}
-
-/**
- * print_array - Prints an array of integers
- *
- * @array: The array to be printed
- * @size: Number of elements in @array
- */
-void print_array(int *array, size_t size)
-{
-	size_t i;
-
-	i = 0;
-	while (array && i < size)
+	printf("Searching in array: ");
+	for (i = 0; i < size; i++)
 	{
-		if (i > 0)
-			printf(", ");
-		printf("%d", array[i]);
-		++i;
+		if (i == size - 1)
+			printf("%d\n", array[i]);
+		else
+			printf("%d, ", array[i]);
 	}
-	printf("\n");
+
+	if (size == 1 && array[0] != value)
+		return (-1);
+	mitad = (size - 1) / 2;
+	if (array[mitad] == value)
+	{
+		if (array[mitad - 1] < value)
+			return (mitad);
+	}
+	if (array[mitad] < value)
+	{
+		index += mitad + 1;
+		array += mitad + 1;
+		if (size % 2 != 0)
+			mitad--;
+	}
+	mitad++;
+	tmp = advanced_binary(array, mitad, value);
+	if (tmp != -1)
+		return (tmp + index);
+	return (-1);
 }
