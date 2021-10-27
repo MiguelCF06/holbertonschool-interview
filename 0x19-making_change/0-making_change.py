@@ -15,20 +15,18 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
+    currentTotal = 0
+    currentCoin = 0
+    totalAmountCoins = 0
+
     coins.sort(reverse=True)
 
-    remaining = total
-    i = 0
-    amount_coins = 0
+    for coin in coins:
+        currentCoin = int((total - currentTotal) / coin)
+        currentTotal += currentCoin * coin
+        totalAmountCoins += currentCoin
 
-    while (i < len(coins)):
-        if remaining == 0:
-            return amount_coins
+    if total - currentTotal > 0:
+        return -1
 
-        if coins[i] > remaining:
-            i += 1
-        else:
-            remaining -= coins[i]
-            amount_coins += 1
-
-    return -1
+    return totalAmountCoins
