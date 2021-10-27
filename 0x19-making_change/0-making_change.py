@@ -1,16 +1,13 @@
 #!/usr/bin/python3
-import sys
 """
 Determine the fewest number of coins to meet a given amount
 """
 
 
 def makeChange(coins, total):
-    '''
-    :@param coins: The coins that we have to exchange
-    :@param total: The given amount to meet
-    :return: The fewest number of coins to meet the total
-    '''
+    """
+    Look for the fewest amount of coins required to reach the total
+    """
 
     if total <= 0:
         return 0
